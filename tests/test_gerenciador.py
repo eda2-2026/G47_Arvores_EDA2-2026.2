@@ -3,6 +3,7 @@ from datetime import datetime, timedelta
 
 from models.evento import Evento
 from services.gerenciador_eventos import GerenciadorEventos
+from services.persistencia import Persistencia
 
 
 def criar_evento(id, dias):
@@ -17,8 +18,13 @@ def criar_evento(id, dias):
     )
 
 
-def test_cadastrar_e_buscar():
-    gerenciador = GerenciadorEventos()
+def criar_gerenciador(tmp_path):
+    banco = Persistencia(str(tmp_path / "eventos_teste.db"))
+    return GerenciadorEventos(persistencia=banco)
+
+
+def test_cadastrar_e_buscar(tmp_path):
+    gerenciador = criar_gerenciador(tmp_path)
     evento = criar_evento(1, 5)
 
     gerenciador.cadastrar(evento)
@@ -27,8 +33,8 @@ def test_cadastrar_e_buscar():
     assert gerenciador.quantidade() == 1
 
 
-def test_proximo_evento():
-    gerenciador = GerenciadorEventos()
+def test_proximo_evento(tmp_path):
+    gerenciador = criar_gerenciador(tmp_path)
 
     gerenciador.cadastrar(criar_evento(1, 5))
     gerenciador.cadastrar(criar_evento(2, 2))
@@ -36,8 +42,8 @@ def test_proximo_evento():
     assert gerenciador.proximo_evento().id == 2
 
 
-def test_listar_em_ordem_cronologica():
-    gerenciador = GerenciadorEventos()
+def test_listar_em_ordem_cronologica(tmp_path):
+    gerenciador = criar_gerenciador(tmp_path)
 
     gerenciador.cadastrar(criar_evento(1, 5))
     gerenciador.cadastrar(criar_evento(2, 2))
@@ -48,8 +54,8 @@ def test_listar_em_ordem_cronologica():
     assert ids == [2, 1, 3]
 
 
-def test_remover_evento():
-    gerenciador = GerenciadorEventos()
+def test_remover_evento(tmp_path):
+    gerenciador = criar_gerenciador(tmp_path)
 
     gerenciador.cadastrar(criar_evento(1, 5))
     gerenciador.cadastrar(criar_evento(2, 2))
@@ -62,8 +68,8 @@ def test_remover_evento():
     assert gerenciador.quantidade() == 1
 
 
-def test_atualizar_evento():
-    gerenciador = GerenciadorEventos()
+def test_atualizar_evento(tmp_path):
+    gerenciador = criar_gerenciador(tmp_path)
 
     gerenciador.cadastrar(criar_evento(1, 5))
 
@@ -74,8 +80,8 @@ def test_atualizar_evento():
     assert gerenciador.proximo_evento().data_hora == novo.data_hora
 
 
-def test_impedir_id_duplicado():
-    gerenciador = GerenciadorEventos()
+def test_impedir_id_duplicado(tmp_path):
+    gerenciador = criar_gerenciador(tmp_path)
 
     gerenciador.cadastrar(criar_evento(1, 5))
 
