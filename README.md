@@ -147,7 +147,7 @@ Neste espaço será disponibilizado o vídeo de apresentação do projeto, demon
 
 [(https://youtu.be/ZBugSyR1jG0)]
 
-> O link definitivo será atualizado após a publicação do vídeo.
+
 
 
 ##  Contexto acadêmico
