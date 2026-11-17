@@ -12,7 +12,7 @@
 
 **Sistema de Gerenciamento de Eventos com Estruturas de Dados**
 
-Projeto desenvolvido em Python para a disciplina de Estruturas de Dados 2 (EDA2), com o objetivo de aplicar estruturas de dados não lineares no gerenciamento e na organização de eventos.
+Projeto desenvolvido em Python para a disciplina de Estruturas de Dados 2 (EDA2), com o objetivo de aplicar estruturas de dados não lineares no gerenciamento e na organização de eventos, esse é um projeto de verão que eu gostaria dde fazer nas férias e tive a oportunidade de fazer nesta materia
 
 ---
 
@@ -145,7 +145,7 @@ Neste espaço será disponibilizado o vídeo de apresentação do projeto, demon
 
  **Assista à apresentação no YouTube:**
 
-[Inserir link do vídeo aqui](https://www.youtube.com/)
+[(https://youtu.be/ZBugSyR1jG0)]
 
 > O link definitivo será atualizado após a publicação do vídeo.
 
